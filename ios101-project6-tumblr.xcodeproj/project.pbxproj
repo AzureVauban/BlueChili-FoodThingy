@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F6C99FF2E30522A00ECBD39 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C99FE2E30522900ECBD39 /* DetailViewController.swift */; };
+		9F9D64FA2E42C5FC0082B063 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D64F92E42C5FC0082B063 /* SplashViewController.swift */; };
 		ED54EF4D29D5382800B6AD22 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED54EF4C29D5382800B6AD22 /* String+Extensions.swift */; };
 		ED59161029BC307D000F25AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59160F29BC307D000F25AE /* AppDelegate.swift */; };
 		ED59161229BC307D000F25AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59161129BC307D000F25AE /* SceneDelegate.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		9F6C99FE2E30522900ECBD39 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		9F9D64F92E42C5FC0082B063 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		ED54EF4C29D5382800B6AD22 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		ED59160C29BC307D000F25AE /* ios101-project6-tumblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios101-project6-tumblr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED59160F29BC307D000F25AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				ED59162529BC4CC8000F25AE /* PostCell.swift */,
 				ED59162329BC4921000F25AE /* Post.swift */,
 				ED59161529BC307D000F25AE /* Main.storyboard */,
+				9F9D64F92E42C5FC0082B063 /* SplashViewController.swift */,
 				ED54EF4C29D5382800B6AD22 /* String+Extensions.swift */,
 				ED59161829BC307E000F25AE /* Assets.xcassets */,
 				ED59161A29BC307E000F25AE /* LaunchScreen.storyboard */,
@@ -174,6 +177,7 @@
 				ED54EF4D29D5382800B6AD22 /* String+Extensions.swift in Sources */,
 				ED59162629BC4CC8000F25AE /* PostCell.swift in Sources */,
 				9F6C99FF2E30522A00ECBD39 /* DetailViewController.swift in Sources */,
+				9F9D64FA2E42C5FC0082B063 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
