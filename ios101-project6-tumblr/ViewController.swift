@@ -6,33 +6,33 @@
 import UIKit
 
 
-struct FoodItem: Codable {
-    let description: String
-    let fdcId: Int
+struct Recipe: Codable {
+    let id: Int
+    let title: String
 }
 
-struct FoodSearchResponse: Codable {
-    let foods: [FoodItem]
+struct RecipeSearchResponse: Codable {
+    let results: [Recipe]
 }
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var foodItems: [FoodItem] = []
+    var recipes: [Recipe] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.dataSource = self
         tableView.delegate = self
-        fetchFoods(query: "apple")
+        fetchRecipes(query: "pasta")
     }
 
-    func fetchFoods(query: String) {
-        let apiKey = "vnAcplRkdIwfthG2GLBytFzKwcX2ibR6DVk4wmgq"
+    func fetchRecipes(query: String) {
+        let apiKey = "YOUR_SPOONACULAR_API_KEY"
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
-        let urlString = "https://api.nal.usda.gov/fdc/v1/foods/search?query=\(encodedQuery)&api_key=\(apiKey)"
+        let urlString = "https://api.spoonacular.com/recipes/complexSearch?query=\(encodedQuery)&apiKey=\(apiKey)"
 
         guard let url = URL(string: urlString) else { return }
 
@@ -48,9 +48,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
 
             do {
-                let response = try JSONDecoder().decode(FoodSearchResponse.self, from: data)
+                let response = try JSONDecoder().decode(RecipeSearchResponse.self, from: data)
                 DispatchQueue.main.async {
-                    self?.foodItems = response.foods
+                    self?.recipes = response.results
                     self?.tableView.reloadData()
                 }
             } catch {
@@ -60,12 +60,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foodItems.count
+        return recipes.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
-        cell.summaryLabel.text = foodItems[indexPath.row].description
+        cell.summaryLabel.text = recipes[indexPath.row].title
         return cell
     }
 }
