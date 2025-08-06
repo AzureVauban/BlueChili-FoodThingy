@@ -31,4 +31,4 @@ StudySpark – Simple study session timer with streak tracking, break reminders,
 BlueChili – Pantry inventory manager that helps reduce food waste and suggests recipes.
 
 # Mock-Up
-![alt text](image.png)
+![alt text](image-1.png)
