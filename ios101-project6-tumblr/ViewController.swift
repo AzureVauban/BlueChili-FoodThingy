@@ -4,93 +4,72 @@
 //
 
 import UIKit
-import NukeExtensions
+
+
+struct Recipe: Codable {
+    let id: Int
+    let title: String
+}
+
+struct RecipeSearchResponse: Codable {
+    let results: [Recipe]
+}
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var posts: [Post] = []
-    var selectedPost: Post?
+    var recipes: [Recipe] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.dataSource = self
         tableView.delegate = self
-        fetchPosts()
-
+        fetchRecipes(query: "pasta")
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
-    }
+    func fetchRecipes(query: String) {
+        let apiKey = Bundle.main.infoDictionary?["SPOONACULAR_API_KEY"] as? String ?? ""
+        let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
+        let urlString = "https://api.spoonacular.com/recipes/complexSearch?query=\(encodedQuery)&apiKey=\(apiKey)"
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
+        guard let url = URL(string: urlString) else { return }
 
-        let post = posts[indexPath.row]
-
-        cell.summaryLabel.text = post.summary
-
-        if let photo = post.photos.first {
-            let url = photo.originalSize.url
-            NukeExtensions.loadImage(with: url, into: cell.postImageView)
-        }
-
-        return cell
-    }
-
-    func fetchPosts() {
-        let url = URL(string: "https://api.tumblr.com/v2/blog/humansofnewyork/posts/photo?api_key=1zT8CiXGXFcQDyMFG7RtcfGLwTdDjFUJnZzKJaWTmgyK4lKGYk")!
-        let session = URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             if let error = error {
                 print("❌ Error: \(error.localizedDescription)")
                 return
             }
 
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, (200...299).contains(statusCode) else {
-                print("❌ Response error: \(String(describing: response))")
-                return
-            }
-
             guard let data = data else {
-                print("❌ Data is NIL")
+                print("❌ No data")
                 return
             }
 
             do {
-                let blog = try JSONDecoder().decode(Blog.self, from: data)
-
-                DispatchQueue.main.async { [weak self] in
-
-                    let posts = blog.response.posts
-                    self?.posts = posts
+                print(String(data: data, encoding: .utf8) ?? "No string output") // Debug print
+                let response = try JSONDecoder().decode(RecipeSearchResponse.self, from: data)
+                DispatchQueue.main.async {
+                    self?.recipes = response.results
                     self?.tableView.reloadData()
-
-                    print("✅ We got \(posts.count) posts!")
-                    for post in posts {
-                        print("🍏 Summary: \(post.summary)")
-                    }
                 }
-
             } catch {
-                print("❌ Error decoding JSON: \(error.localizedDescription)")
+                print("❌ Decoding error: \(error.localizedDescription)")
+                if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) {
+                    print("⚠️ Fallback JSON: \(jsonObject)")
+                }
             }
-        }
-        session.resume()
+        }.resume()
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedPost = posts[indexPath.row]
-        performSegue(withIdentifier: "DetailSegue", sender: self)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recipes.count
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailSegue",
-           let detailVC = segue.destination as? DetailViewController {
-            detailVC.post = selectedPost
-        }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
+        cell.summaryLabel.text = recipes[indexPath.row].title
+        return cell
     }
-
 }

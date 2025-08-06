@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9F6C99FF2E30522A00ECBD39 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C99FE2E30522900ECBD39 /* DetailViewController.swift */; };
 		9F9D64FA2E42C5FC0082B063 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D64F92E42C5FC0082B063 /* SplashViewController.swift */; };
+		9F9D64FC2E42D21D0082B063 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9F9D64FB2E42D21D0082B063 /* Secrets.xcconfig */; };
 		ED54EF4D29D5382800B6AD22 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED54EF4C29D5382800B6AD22 /* String+Extensions.swift */; };
 		ED59161029BC307D000F25AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59160F29BC307D000F25AE /* AppDelegate.swift */; };
 		ED59161229BC307D000F25AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59161129BC307D000F25AE /* SceneDelegate.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		9F6C99FE2E30522900ECBD39 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9F9D64F92E42C5FC0082B063 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		9F9D64FB2E42D21D0082B063 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		ED54EF4C29D5382800B6AD22 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		ED59160C29BC307D000F25AE /* ios101-project6-tumblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios101-project6-tumblr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED59160F29BC307D000F25AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				ED59160F29BC307D000F25AE /* AppDelegate.swift */,
 				ED59161129BC307D000F25AE /* SceneDelegate.swift */,
 				ED59161329BC307D000F25AE /* ViewController.swift */,
+				9F9D64FB2E42D21D0082B063 /* Secrets.xcconfig */,
 				9F6C99FE2E30522900ECBD39 /* DetailViewController.swift */,
 				ED59162529BC4CC8000F25AE /* PostCell.swift */,
 				ED59162329BC4921000F25AE /* Post.swift */,
@@ -157,6 +160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F9D64FC2E42D21D0082B063 /* Secrets.xcconfig in Resources */,
 				ED59161C29BC307E000F25AE /* LaunchScreen.storyboard in Resources */,
 				ED59161929BC307E000F25AE /* Assets.xcassets in Resources */,
 				ED59161729BC307D000F25AE /* Main.storyboard in Resources */,
@@ -205,6 +209,7 @@
 /* Begin XCBuildConfiguration section */
 		ED59161E29BC307E000F25AE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F9D64FB2E42D21D0082B063 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -265,6 +270,7 @@
 		};
 		ED59161F29BC307E000F25AE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F9D64FB2E42D21D0082B063 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -319,6 +325,7 @@
 		};
 		ED59162129BC307E000F25AE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F9D64FB2E42D21D0082B063 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -346,6 +353,7 @@
 		};
 		ED59162229BC307E000F25AE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F9D64FB2E42D21D0082B063 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
