@@ -1,19 +1,27 @@
-# Capstone Project - *BlueChili*
+# BlueChili Pantry App
 
-Submitted by: **Michael Elder**
 
-**BlueChili** is an app that allows a user to search for foods and add them to a pantry for them to reference later
+**Capstone Project - iOS Development**  
+**Submitted by:** *Michael Elder*
 
-Time spent: **5** hours spent in total
+---
 
-## Required Features
+## Overview
 
-The following **required** functionality is completed:
+**BlueChili** is an iOS pantry app that allows users to search for food recipes and add them to a personal pantry for future reference. The goal of this project is to help users track and manage recipes they’re interested in cooking or saving for later. Main API used is [Spooncular](https://spoonacular.com/food-api).
 
-- [ ] Users can view a recipe
-- [ ] Users can save or remove a recipe to their pantry
-- [ ] Users can search for a recipe
+---
 
-## Things that I learned 
+## Time Spent
 
-- How to add a secret (API keys) and expose them to the project
+**6 hours** in total.
+
+---
+
+## ✅ Required Features
+
+The following **required** functionality is either completed or in progress:
+
+- [ ] Users can **view a recipe**
+- [ ] Users can **save or remove a recipe** to their pantry
+- [ ] Users can **search for a recipe**
