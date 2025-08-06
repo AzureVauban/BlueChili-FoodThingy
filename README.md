@@ -12,4 +12,8 @@ The following **required** functionality is completed:
 
 - [ ] Users can view a recipe
 - [ ] Users can save or remove a recipe to their pantry
-- [ ] users can search for a recipe
+- [ ] Users can search for a recipe
+
+## Things that I learned 
+
+- How to add a secret (API keys) and expose them to the project
