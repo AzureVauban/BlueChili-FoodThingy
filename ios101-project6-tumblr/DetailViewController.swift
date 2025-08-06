@@ -6,12 +6,14 @@
 //
 
 import UIKit
-import NukeExtensions
+import Nuke
 
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var recipeTitleLabel: UILabel!
+
     
     var post: Post?
 
@@ -31,23 +33,20 @@ class DetailViewController: UIViewController {
         postImageView.layer.borderWidth = 0.5
         
         if let post = post {
-           // captionTextView.text = post.caption //! THIS CAUSES RAW HMTL TO BE RENDERED
-        
-            
-            // this resolves that issue
-            
+            recipeTitleLabel.text = post.title.isEmpty ? "Untitled Recipe" : post.title
+
             if let data = post.caption.data(using: .utf8),
                let attributedHTML = try? NSMutableAttributedString(
                    data: data,
                    options: [
                        .documentType: NSAttributedString.DocumentType.html,
-                        .characterEncoding: String.Encoding.utf8.rawValue
+                       .characterEncoding: String.Encoding.utf8.rawValue
                    ],
                    documentAttributes: nil
                ) {
 
                 let fullRange = NSRange(location: 0, length: attributedHTML.length)
-                
+
                 if let markerFont = UIFont(name: "MarkerFelt-Wide", size: 12) {
                     attributedHTML.addAttribute(.font, value: markerFont, range: fullRange)
                 }
@@ -59,10 +58,21 @@ class DetailViewController: UIViewController {
             } else {
                 captionTextView.text = post.caption
             }
-            
-            
-            if let photo = post.photos.first {
-                NukeExtensions.loadImage(with: photo.originalSize.url, into: postImageView)
+
+            if !post.image.isEmpty, let imageUrl = URL(string: post.image) {
+                let request = ImageRequest(url: imageUrl)
+                ImagePipeline.shared.loadImage(with: request) { result in
+                    switch result {
+                    case .success(let response):
+                        self.postImageView.image = response.image
+                    case .failure(let error):
+                        print("Image load error for URL \(imageUrl): \(error)")
+                        self.postImageView.image = UIImage(named: "placeholder")
+                    }
+                }
+            } else {
+                print("Invalid or missing image URL.")
+                self.postImageView.image = UIImage(named: "placeholder")
             }
         }
     }

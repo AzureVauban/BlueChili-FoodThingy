@@ -78,6 +78,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="postImageView" destination="5cg-6O-OPR" id="qUw-eB-ieB"/>
+                                            <outlet property="recipeTitleLabel" destination="Ans-1x-Iz9" id="HS5-V4-WuY"/>
                                             <outlet property="summaryLabel" destination="Ans-1x-Iz9" id="e0V-uT-5A7"/>
                                             <segue destination="wlh-5J-fyN" kind="show" identifier="DetailSegue" id="CYT-Ge-fs7"/>
                                         </connections>
@@ -101,46 +102,48 @@
         <scene sceneID="VeI-C6-mpM">
             <objects>
                 <viewController id="wlh-5J-fyN" customClass="DetailViewController" customModule="ios101_project6_tumblr" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="gJz-jo-3WK">
+                    <view key="view" contentMode="scaleToFill" id="gJz-jo-3WK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fp4-dZ-9Av">
-                                <rect key="frame" x="16" y="79" width="361" height="190"/>
-                                <accessibility key="accessibilityConfiguration" label="BlogPostPhoto"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="361" id="dUC-Hk-kgW"/>
-                                    <constraint firstAttribute="height" constant="190" id="gzn-D3-3Vd"/>
-                                </constraints>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5Y-e1-yEK">
-                                <rect key="frame" x="16" y="257" width="361" height="492"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fp4-dZ-9Av">
+                                <rect key="frame" x="16" y="59" width="190" height="190"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="BlogPostPhoto"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5Y-e1-yEK">
+                                <rect key="frame" x="16" y="257" width="361" height="492"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <fragment content="Details about the recipe">
                                         <attributes>
-                                            <color key="NSColor" systemColor="labelColor"/>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="13" name="MarkerFelt-Thin"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RecipeTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phq-53-o3m">
+                                <rect key="frame" x="214" y="63" width="163" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BjT-ie-1ep"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="BjT-ie-1ep" firstAttribute="trailing" secondItem="Fp4-dZ-9Av" secondAttribute="trailing" id="Xc6-0c-E86"/>
-                            <constraint firstItem="Fp4-dZ-9Av" firstAttribute="top" secondItem="BjT-ie-1ep" secondAttribute="top" constant="20" id="f9A-Ud-6UD"/>
-                            <constraint firstItem="Fp4-dZ-9Av" firstAttribute="leading" secondItem="BjT-ie-1ep" secondAttribute="leading" id="j2F-xs-5j9"/>
+                            <constraint firstItem="s5Y-e1-yEK" firstAttribute="top" secondItem="BjT-ie-1ep" secondAttribute="top" constant="15" id="YPE-Nj-8dq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lXq-mg-pJU"/>
                     <connections>
                         <outlet property="captionTextView" destination="s5Y-e1-yEK" id="AT9-Tk-Edf"/>
                         <outlet property="postImageView" destination="Fp4-dZ-9Av" id="GjJ-1y-xeG"/>
+                        <outlet property="recipeTitleLabel" destination="Phq-53-o3m" id="YN8-68-PmY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSZ-M8-n1d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -152,9 +155,6 @@
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

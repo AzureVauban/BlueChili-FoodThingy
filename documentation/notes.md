@@ -37,5 +37,6 @@ So that I don’t lose my inventory.
 
 ## Current Troubles:
 
+Development is still ongoing, as of submission I am blocked on implementing the detail view for a selected recipe
 - Unable to Resolve image being applied to Detail View Controller
 - Unable to implement recipes fetched from [Spooncular](https://spoonacular.com/food-api) 

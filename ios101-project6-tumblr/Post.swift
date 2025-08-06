@@ -17,6 +17,16 @@ struct Post: Decodable {
     let summary: String
     let caption: String
     let photos: [Photo]
+    let image: String
+    let title: String
+
+    enum CodingKeys: String, CodingKey {
+        case summary
+        case caption
+        case photos
+        case image
+        case title
+    }
 }
 
 struct Photo: Decodable {

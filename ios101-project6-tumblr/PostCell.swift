@@ -9,7 +9,8 @@ class PostCell: UITableViewCell {
 
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var summaryLabel: UILabel!
-
+    @IBOutlet weak var recipeTitleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

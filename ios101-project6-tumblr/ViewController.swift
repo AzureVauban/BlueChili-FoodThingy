@@ -52,8 +52,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             do {
                 print(String(data: data, encoding: .utf8) ?? "No string output") // Debug print
                 let response = try JSONDecoder().decode(RecipeSearchResponse.self, from: data)
+                let filteredResults = response.results.filter { !$0.image.contains("667704") } // Add other known bad image IDs if needed
                 DispatchQueue.main.async {
-                    self?.recipes = response.results
+                    self?.recipes = filteredResults
                     self?.tableView.reloadData()
                 }
             } catch {
@@ -72,20 +73,34 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
         let recipe = recipes[indexPath.row]
+
+        // Set the title
         cell.summaryLabel.text = recipe.title
-        if let imageUrl = URL(string: recipe.image) {
+
+        // Clear previous image
+        cell.postImageView.image = nil
+
+        // Attempt to load image
+        if let imageUrl = URL(string: recipe.image), recipe.image.lowercased().hasSuffix(".jpg") {
+            print("🔍 Trying to load image from: \(imageUrl.absoluteString)")
             let request = ImageRequest(url: imageUrl)
+
             Nuke.ImagePipeline.shared.loadImage(with: request) { result in
-                switch result {
-                case .success(let response):
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let response):
                         cell.postImageView.image = response.image
+                    case .failure(let error):
+                        print("⚠️ Image load error: \(error)")
+                        cell.postImageView.image = UIImage(named: "fallback") // Add fallback image to Assets
                     }
-                case .failure(let error):
-                    print("Image load error: \(error)")
                 }
             }
+        } else {
+            print("⚠️ Invalid or unsupported image URL: \(recipe.image)")
+            cell.postImageView.image = UIImage(named: "fallback")
         }
+
         return cell
     }
 }
