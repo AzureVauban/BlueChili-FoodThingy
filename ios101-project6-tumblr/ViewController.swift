@@ -48,6 +48,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
 
             do {
+                print(String(data: data, encoding: .utf8) ?? "No string output") // Debug print
                 let response = try JSONDecoder().decode(RecipeSearchResponse.self, from: data)
                 DispatchQueue.main.async {
                     self?.recipes = response.results
@@ -55,6 +56,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
             } catch {
                 print("❌ Decoding error: \(error.localizedDescription)")
+                if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) {
+                    print("⚠️ Fallback JSON: \(jsonObject)")
+                }
             }
         }.resume()
     }
