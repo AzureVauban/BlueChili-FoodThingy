@@ -4,11 +4,13 @@
 //
 
 import UIKit
+import Nuke
 
 
 struct Recipe: Codable {
     let id: Int
     let title: String
+    let image: String
 }
 
 struct RecipeSearchResponse: Codable {
@@ -69,7 +71,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
-        cell.summaryLabel.text = recipes[indexPath.row].title
+        let recipe = recipes[indexPath.row]
+        cell.summaryLabel.text = recipe.title
+        if let imageUrl = URL(string: recipe.image) {
+            let request = ImageRequest(url: imageUrl)
+            Nuke.ImagePipeline.shared.loadImage(with: request) { result in
+                switch result {
+                case .success(let response):
+                    DispatchQueue.main.async {
+                        cell.postImageView.image = response.image
+                    }
+                case .failure(let error):
+                    print("Image load error: \(error)")
+                }
+            }
+        }
         return cell
     }
 }
