@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func fetchRecipes(query: String) {
-        let apiKey = "YOUR_SPOONACULAR_API_KEY"
+        let apiKey = Bundle.main.infoDictionary?["SPOONACULAR_API_KEY"] as? String ?? ""
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
         let urlString = "https://api.spoonacular.com/recipes/complexSearch?query=\(encodedQuery)&apiKey=\(apiKey)"
 
